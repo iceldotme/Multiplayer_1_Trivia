@@ -14,9 +14,9 @@ namespace WebApplication2WebApiCsharp.Controllers
         private const string SignForDotMark = "YYY";
 
         public Dictionary<string, bool> questions = new Dictionary<string, bool>{
-            { "Was Onassis born in 1906?", true },// the sign "?" is a special character - we need to deal with it
-            { "Was Onassis a telephone operator?", true },
-            { "Did Onassis live in New York?", true },
+            { "Was Aviv born in 1978?", false },// the sign "?" is a special character - we need to deal with it
+            { "Was Aviv working in customer support?", true },
+            { "Did Aviv publish 2 book?", true },
             { "Was Onassis granted the contract for Greek air transport industr?", true },
             { "Did he marry U.S. President John F. Kennedy widow?", true },
             { "Did Onassis died at the year 2000?", false },
