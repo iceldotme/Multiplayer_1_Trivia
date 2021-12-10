@@ -15,28 +15,27 @@ namespace WebApplication2WebApiCsharp.Controllers
 
         public Dictionary<string, bool> questions = new Dictionary<string, bool>{
             { "Was Aviv born in 1978?", false },// the sign "?" is a special character - we need to deal with it
-            { "Was Aviv working in customer support?", true },
+            { "Does Aviv works in customer support?", true },
             { "Did Aviv publish 2 book?", true },
-            { "Was Onassis granted the contract for Greek air transport industr?", true },
-            { "Did he marry U.S. President John F. Kennedy widow?", true },
-            { "Did Onassis died at the year 2000?", false },
-            { "Was Athina Livanos Onassis's sister?", false }, // This fail beacuse ' can't be sent in url
+
             };
 
         #region Supports REST api
 
 
-        private string UrlDecode(string str) {
+        private string UrlDecode(string str)
+        {
             str = System.Web.HttpUtility.UrlDecode(str);
             str = str.Replace(SignForQuestionMark, "?");
             str = str.Replace(SignForDotMark, ".");
-            
+
             return str;
         }
 
         [HttpGet]
         [ActionName("Yes")]
-        public string GetIsYes(string info) {
+        public string GetIsYes(string info)
+        {
             info = UrlDecode(info);
             if (questions.ContainsKey(info) == false) return Failure;
             return questions[info] == true ? Success : Failure;
@@ -44,7 +43,8 @@ namespace WebApplication2WebApiCsharp.Controllers
 
         [HttpGet]
         [ActionName("No")]
-        public string GetIsNo(string info) {
+        public string GetIsNo(string info)
+        {
             info = UrlDecode(info);
             if (info == "Is true?")
                 return Success;
@@ -54,12 +54,14 @@ namespace WebApplication2WebApiCsharp.Controllers
 
         [HttpGet]
         [ActionName("RandomQuestion")]
-        public string GetRandomQuestions() {
+        public string GetRandomQuestions()
+        {
             System.Random rand = new System.Random((int)System.DateTime.Now.Ticks);
             int index = rand.Next(0, questions.Count);
             var enumerator = questions.Keys.GetEnumerator(); /*var = identify the class type from the result of =   */
             enumerator.MoveNext();
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index; i++)
+            {
                 enumerator.MoveNext();
             }
             var question = enumerator.Current;
@@ -68,7 +70,7 @@ namespace WebApplication2WebApiCsharp.Controllers
         }
         #endregion
 
-       
+
 
     }
 }
